@@ -12,7 +12,10 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://www.hahahehehuhu.xyz"],
+    origin: [
+      "https://mern-3-frontend-6flgbq13w-sunils-projects-7d59a893.vercel.app",
+      "http://localhost:5173",
+    ],
   }),
 );
 
@@ -28,7 +31,7 @@ app.post("/blog", upload.single("image"), async (req, res) => {
   const { title, subtitle, description } = req.body;
   let filename;
   if (req.file) {
-    filename = "https://mern3-node.onrender.com/" + req.file.filename;
+    filename = "https://mern3-node-op9a.onrender.com/" + req.file.filename;
   } else {
     filename =
       "https://cdn.mos.cms.futurecdn.net/i26qpaxZhVC28XRTJWafQS-1200-80.jpeg";
@@ -96,7 +99,7 @@ app.patch("/blog/:id", upload.single("image"), async (req, res) => {
   const { title, subtitle, description } = req.body;
   let imageName;
   if (req.file) {
-    imageName = "https://mern3-node.onrender.com/" + req.file.filename;
+    imageName = "https://mern3-node-op9a.onrender.com/" + req.file.filename;
     const blog = await Blog.findById(id);
     const oldImageName = blog.image;
 
