@@ -12,10 +12,16 @@ const cors = require("cors");
 
 app.use(
   cors({
-    origin: [
-      "https://mern-3-frontend-git-main-sunils-projects-7d59a893.vercel.app",
-      "http://localhost:5173",
-    ],
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
+      const allowed =
+        origin === "http://localhost:5173" ||
+        origin === "http://localhost:3000" ||
+        origin.endsWith(".vercel.app");
+      callback(null, allowed);
+    },
   }),
 );
 
